@@ -29,4 +29,14 @@ namespace le7_saisies
 	};
 
 }
+
+// https://guides.github.com/features/mastering-markdown/
+
+// https://www.webpagefx.com/tools/emoji-cheat-sheet/
+
+/*
+https://help.github.com/articles/basic-writing-and-formatting-syntax/#headings
+https://help.github.com/articles/creating-and-highlighting-code-blocks/
+https://help.github.com/articles/working-with-advanced-formatting/
+*/
 # endif // SAISIES_H

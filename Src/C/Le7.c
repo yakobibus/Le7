@@ -18,7 +18,6 @@ namespace le7_main
 			for (int i = 0; i < _argc; ++i)
 			{
 				_argv[i] = argv[i];
-				std::cout << "(" << i << ") <" << _argv[i].c_str() << ">" << std::endl;
 			}
 		}
 	}
@@ -102,10 +101,11 @@ namespace le7_main
 
 			const int initScore = 0;
 			const int initNbParties = 0;
+			const int initClassement = 0;
 			for (int i = 0; i < _nbJoueurs; ++i)
 			{
-				_lesJoueurs[i].setJoueur(getArgv(1 + i), initScore, initNbParties);
-				_lesJoueurs[i].affiche();
+				_lesJoueurs[i].setJoueur(getArgv(1 + i), initScore, initNbParties, 1 + i, initClassement);
+				//_lesJoueurs[i].affiche();  // ici ....
 			}
 		}
 	}
@@ -132,9 +132,10 @@ namespace le7_main
 
 			const int initScore = 0;
 			const int initNbParties = 0;
+			const int initClassement = 0;
 			for (int i = 1; i < getArgc(); ++i)
 			{
-				_lesJoueurs[i].setJoueur(getArgv(i), initScore, initNbParties);
+				_lesJoueurs[i].setJoueur(getArgv(i), initScore, initNbParties, i, initClassement);
 			}
 		}
 	}
@@ -154,18 +155,28 @@ namespace le7_main
 
 				const int initScore = 0;
 				const int initNbParties = 0;
+				const int initClassement = 0;
 				for (int i = 1; i < getArgc(); ++i)
 				{
-					_lesJoueurs[i].setJoueur(getArgv(i), initScore, initNbParties);
+					_lesJoueurs[i].setJoueur(getArgv(i), initScore, initNbParties, i, initClassement);
 				}
 			}
 		}
 		return *this;
 	}
 
+	inline void Main7::affiche(void)
+	{
+		std::cout << std::endl;
+		for (int i = 1; i <= _nbJoueurs; ++i)
+		{
+			_lesJoueurs[-1 + i].affiche(_nbJoueurs);
+		}
+	}
+
 	inline void Main7::Le7(void)
 	{
-		le7_joueur::Joueur j1("Primo");
+		//le7_joueur::Joueur j1("Primo");
 	}
 }
 	
@@ -173,6 +184,7 @@ namespace le7_main
 int main(int argc, char** argv) {
 	le7_main::Main7 m7 (argc, argv);
 	m7.Le7();
+	m7.affiche();
 
 	return 0;
 }

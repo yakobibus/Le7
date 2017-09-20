@@ -73,6 +73,7 @@ namespace le7_saisies
 			}
 		}
 		
+		return _eSaisie;
 		/*
 		ssDummy >> _sPayload;
 		_eSaisie = Esaisie::sValue;
