@@ -8,40 +8,65 @@
 # include "Joueur.h"
 
 
-namespace le7_main
+namespace le7_main7Base
 {
 	class Main7Base
 	{
-	public :
-		Main7Base() :_argc (0), _argv (nullptr) {}
+	public:
+		Main7Base() :_argc(0), _argv(nullptr) {}
 		Main7Base(int argc, char** argv);
 		virtual ~Main7Base();
 		Main7Base(const Main7Base& m);
 		Main7Base& operator = (const Main7Base& m);
-	protected :
-		virtual void Le7 ( void ) = 0;
+	protected:
+		virtual void Le7(void) = 0;
 		inline int getArgc(void);
 		inline std::string getArgv(int rang);
 		inline std::string* getArgv(void);
-	private :
+	private:
 		int _argc;
 		std::string* _argv;
 	};
 
-	class Main7 : public Main7Base
+	class Le7;
+}
+
+namespace le7_main
+{
+	class Main7 : public le7_main7Base::Main7Base
 	{
-	public :
-		Main7() : Main7Base(0, nullptr) , _nbJoueurs (0), _lesJoueurs (nullptr) {}
-		Main7(int argc, char** argv) ;
+	public:
+		Main7() : Main7Base(0, nullptr), _nbJoueurs(0), _lesJoueurs(nullptr) {}
+		Main7(int argc, char** argv);
 		~Main7();
 		Main7(const Main7& m);
 		Main7& operator = (const Main7& m);
 		virtual void Le7(void);
 
 		void affiche(void);
-	private :
+	private:
+		friend class Le7;
 		le7_joueur::Joueur* _lesJoueurs;
 		int _nbJoueurs;
+	};
+}
+
+namespace le7_le7
+{
+
+	class Le7
+	{
+	public :
+		Le7(le7_joueur::Joueur*& listeJoueurs, int& nbJoueurs);
+		~Le7() = default;
+		Le7(const Le7& l) = default ;
+		Le7& operator = (const Le7& l) = default ;
+		//
+		void Regle_1(void); // Si un seul joueur démarre la partie, le programme lui fournira un sparring partner 
+	protected :
+	private :
+		le7_joueur::Joueur*& _lesJoueurs;
+		int& _nbJoueurs;
 	};
 }
 
@@ -70,7 +95,7 @@ Scoring :
 						Sinon
 							défaite
 Remarques :
-	1. Si un seul joueur démarre la partie, le programme lui fournira un sparring partner
+	}1. Si un seul joueur démarre la partie, le programme lui fournira un sparring partner - {Regle_1)
 	2. Chaque lancé se fait avec deux dés
 	3. Le joueur cumule les points de tous ses lancés successifs
 	4. La meilleure main est le cumul des points qui atteint 7 ou s'en rapproche le plus
