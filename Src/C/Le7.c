@@ -6,7 +6,39 @@
 
 using std::string;
 
-namespace le7_main
+namespace le7_le7
+{
+	le7_le7::Le7::Le7(le7_joueur::Joueur*& listeJoueurs, int& nbJoueurs)
+		: _lesJoueurs (listeJoueurs)
+		, _nbJoueurs (nbJoueurs)
+	{
+	}
+
+	void le7_le7::Le7::Regle_1 (void)
+	{
+		if (_nbJoueurs == 1)
+		{
+			std::cout << ".... Regle_1 ...\n";
+			le7_joueur::Joueur jTemporaire(_lesJoueurs [0]);
+			
+			delete [] _lesJoueurs;
+			_lesJoueurs = nullptr;
+
+			_nbJoueurs = 2;
+			_lesJoueurs = new le7_joueur::Joueur[_nbJoueurs];
+
+			_lesJoueurs[0] = jTemporaire;
+			const std::string pseudoSparring = "Sparring Partner";
+			const int initScoreSparring = 0;
+			const int initNbPartiesSparring = 0;
+			const int initEniemeSparring = 2;
+			const int initClassementSparring = 0;
+			_lesJoueurs[1].setJoueur(pseudoSparring, initScoreSparring, initNbPartiesSparring, initEniemeSparring, initClassementSparring);
+		}
+	}
+}
+
+namespace le7_main7Base
 {
 	Main7Base::Main7Base(int argc, char** argv)
 		: _argc(argc)
@@ -87,8 +119,10 @@ namespace le7_main
 	inline std::string * Main7Base::getArgv(void) { return _argv; }
 
 	inline std::string Main7Base::getArgv(int rang) { assert(rang >= 0 && rang < _argc); return _argv[rang]; }
+}
 
-
+namespace le7_main
+{
 	Main7::Main7(int argc, char** argv)
 		: Main7Base(argc, argv)
 		, _nbJoueurs(0)
@@ -105,7 +139,6 @@ namespace le7_main
 			for (int i = 0; i < _nbJoueurs; ++i)
 			{
 				_lesJoueurs[i].setJoueur(getArgv(1 + i), initScore, initNbParties, 1 + i, initClassement);
-				//_lesJoueurs[i].affiche();  // ici ....
 			}
 		}
 	}
@@ -176,7 +209,8 @@ namespace le7_main
 
 	inline void Main7::Le7(void)
 	{
-		//le7_joueur::Joueur j1("Primo");
+		le7_le7::Le7 le7 (_lesJoueurs, _nbJoueurs);
+		le7.Regle_1();
 	}
 }
 	
