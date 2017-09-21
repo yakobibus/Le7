@@ -211,6 +211,10 @@ namespace le7_main
 	{
 		le7_le7::Le7 le7 (_lesJoueurs, _nbJoueurs);
 		le7.Regle_1();
+		std::cout << "Joueur 1, " << std::endl;
+		le7.Tirage();
+		std::cout << "Joueur 2, " << std::endl;
+		le7.Tirage();
 	}
 }
 	

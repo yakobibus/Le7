@@ -6,6 +6,7 @@
 # include <iostream>
 # include <cassert>
 # include "Joueur.h"
+# include "LeDe.h"
 
 
 namespace le7_main7Base
@@ -63,10 +64,14 @@ namespace le7_le7
 		Le7& operator = (const Le7& l) = default ;
 		//
 		void Regle_1(void); // Si un seul joueur démarre la partie, le programme lui fournira un sparring partner 
+		void Tirage(void) { std::cout << "[" << _de1.Lancer() << "] .. [" << _de2.Lancer() << "]" << std::endl; }
 	protected :
 	private :
 		le7_joueur::Joueur*& _lesJoueurs;
 		int& _nbJoueurs;
+
+		le7_le_de::LeDe _de1;
+		le7_le_de::LeDe _de2;
 	};
 }
 
