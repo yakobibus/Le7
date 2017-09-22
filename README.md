@@ -1,27 +1,31 @@
 # Le7
-Le7 est un jeu de dés (deux dés). Le premier à 7 points gagne 
-### Principe :
-    Deux joueurs ou d'avantage lancent chacun leur tour deux dés et totalisent les points. Chaque nouveau lancé de dés vient s'ajouter à la somme des points du joueur pour la partie en cours.
-##### Scoring :
-      Si le cumul des lancés d'un joueur est égal à 7
-        alors victoire
-      Sinon
-        Si le cumul des lancés d'un joueur est > 7
-          alors défaite
-        Sinon
-          Si le cumul des lancés d'un joueur est  <  7
-            alors
-            Si c'est la meilleure main (le meilleur cumul est celui qui se rapproche le plus de 7)
-              alors victoire 
-            Sinon 
-              Si le joueur relance pour améliorer son cumul
-                alors nouvelle évaluation du scoring de tous les joueurs
-              Sinon
-                défaite
-### Remarques :
-    1. Si un seul joueur démarre la partie, le programme lui fournira un sparring partner
-    2. Chaque lancé se fait avec deux dés
-    3. Le joueur cumule les points de tous ses lancés successifs
-    4. La meilleure main est le cumul des points qui atteint 7 ou s'en rapproche le plus
-    5. Un joueur ne peut lancer les dés que si son nombre de lancés est <= à celui de ses adversaires
-    6. Tous les joueurs ayant un cumul >= 7 points ne peuvent plus lancer les dés. Leur score est définitif pour la partie en cours
+    Un jeu de dés opposant au moins deux adversaires
+    Chaque joueur lance un dé à son tour, les poits se cumulent après chaque lancé.
+
+## Principe :
+    Deux joueurs ou d'avantage s'affrontent dans un jeu de dés.  Le but est de totalier 7 points avec le dé
+
+## Scorring :
+    s1. Les joueurs lancent chacun leur tour un premier dé
+    s2. Quand tous les joueurs ont fait un lancé, les scores sont évalués et le classement déterminé
+    s3. Si un joueur totalise 7 points 
+        s31. il remporte la partie qui prend fin aussitôt
+    s4. Sinon
+        s41. Si un joueur totalise plus de 7 points
+             s411. il est aussitôt hors jeu, son score est ramené à zéro, il ne marque pas de point
+        s42. Sinon
+             s421. Un nouveau tour de lancés est enclanché pour lequel les joueurs encore en course. Ils ont le choix de relancer un dé ou non
+                 s4211. Si un joueur renonce à relancer le dé, 
+                        s42111. il cumule un lancé à zéro points, il garde donc son total inchané pour ce tour
+                 s4212. Sinon
+                        s42121. il lance un nouveau dé dont les points s'ajoutent à son total. Ce cumul est évalué pour déterminer la victoire (7 points) ou l'élimination (> 7 points).
+    s5. Afficher à l'issue de chaque tour, les scores et les victoires/défaites/hors jeux éventuel et le classement
+
+## Règles :
+    r1. Si un seul joueur démarre la partie, le programme lui fournira un sparring partner
+    r2. Si un joueur totalise plus de 7 points, il est hors jeu d'office, son score est ramené à zéro
+    r3. Le premier joueur totalisant 7 points gagne la partie qui prend fin aussitôt
+    r4. Seul le gagnant marque des points (2 points)
+    r5. Si aucun joueur n'a marqué 7 points, les scores des joueurs sont évalués de manière décroissante :
+        tous ceux ayant le score le plus élevé marqueront un point chacun.
+    r6. Les joueurs n'ayant pas remporté la partie ne marquent pas de points
