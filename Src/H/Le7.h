@@ -57,21 +57,45 @@ namespace le7_le7
 
 	class Le7
 	{
+	private :
+		class Partie;
 	public :
 		Le7(le7_joueur::Joueur*& listeJoueurs, int& nbJoueurs);
-		~Le7() = default;
-		Le7(const Le7& l) = default ;
-		Le7& operator = (const Le7& l) = default ;
+		~Le7();
+		Le7(const Le7& l) ;
+		Le7& operator = (const Le7& l) ;
 		//
 		void Regle_1(void); // Si un seul joueur démarre la partie, le programme lui fournira un sparring partner 
-		void Tirage(void) { std::cout << "[" << _de1.Lancer() << "] .. [" << _de2.Lancer() << "]" << std::endl; }
-	protected :
+		void Tirage(void) { std::cout << "[" << _de1.Lancer() << "]" << std::endl; }
+
+		// void dummyPartie(Le7::Partie& p) { std::cout << p._nbLances; }
+	private :
+		class Partie
+		{
+		public :
+			Partie();
+
+			~Partie() = default;
+
+			Partie(const Partie& p);
+
+			Partie& operator = (const Partie& p); 
+		protected :
+		private :
+			unsigned int _nbLances;
+			int _scoreDesLances[7];  // Les scores des lancés successifs, initialises à -1
+			bool _estHorsJeu ;
+
+			friend class Le7;
+		};
 	private :
 		le7_joueur::Joueur*& _lesJoueurs;
 		int& _nbJoueurs;
 
+		Partie* _partiesDesJoueurs;
+
 		le7_le_de::LeDe _de1;
-		le7_le_de::LeDe _de2;
+		//le7_le_de::LeDe _de2;
 	};
 }
 
