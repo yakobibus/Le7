@@ -12,7 +12,46 @@ namespace le7_le7
 		: _lesJoueurs (listeJoueurs)
 		, _nbJoueurs (nbJoueurs)
 	{
+		_partiesDesJoueurs = new le7_le7::Le7::Partie[_nbJoueurs];
 	}
+
+	le7_le7::Le7::~Le7()
+	{
+		delete[] _partiesDesJoueurs;
+	}
+
+	le7_le7::Le7::Le7(const Le7& l) : _nbJoueurs(this->_nbJoueurs), _lesJoueurs (this->_lesJoueurs)
+	{
+		if(this != &l)
+		{ 
+			delete[] _partiesDesJoueurs;
+
+			_nbJoueurs = l._nbJoueurs;
+			_partiesDesJoueurs = new le7_le7::Le7::Partie [_nbJoueurs];
+			for (int i = 0; i < _nbJoueurs; ++i)
+			{
+				_partiesDesJoueurs[i] = l._partiesDesJoueurs[i];
+			}
+		}
+	}
+
+	le7_le7::Le7& le7_le7::Le7::operator = (const Le7& l)
+	{
+		if(this != &l)
+		{ 
+			delete[] _partiesDesJoueurs;
+
+			_nbJoueurs = l._nbJoueurs;
+			_partiesDesJoueurs = new le7_le7::Le7::Partie [_nbJoueurs];
+			for (int i = 0; i < _nbJoueurs; ++i)
+			{
+				_partiesDesJoueurs[i] = l._partiesDesJoueurs[i];
+			}
+		}
+		
+		return *this;
+	}
+
 
 	void le7_le7::Le7::Regle_1 (void)
 	{
@@ -35,6 +74,44 @@ namespace le7_le7
 			const int initClassementSparring = 0;
 			_lesJoueurs[1].setJoueur(pseudoSparring, initScoreSparring, initNbPartiesSparring, initEniemeSparring, initClassementSparring);
 		}
+	}
+
+	Le7::Partie::Partie()
+		: _nbLances(0)
+		, _estHorsJeu(false)
+	{
+		for (int i = 0; i < 7; ++i)
+		{
+			_scoreDesLances[i] = -1;
+		}
+	}
+
+	Le7::Partie::Partie(const Partie & p)
+	{
+		if (this != &p)
+		{
+			_nbLances = p._nbLances;
+			_estHorsJeu = p._estHorsJeu;
+			for (int i = 0; i < 7; ++i)
+			{
+				_scoreDesLances[i] = p._scoreDesLances[i];
+			}
+		}
+	}
+
+	Le7::Partie& Le7::Partie::operator = (const Le7::Partie& p)
+	{
+		if (this != &p)
+		{
+			_nbLances = p._nbLances;
+			_estHorsJeu = p._estHorsJeu;
+			for (int i = 0; i < 7; ++i)
+			{
+				_scoreDesLances[i] = p._scoreDesLances[i];
+			}
+		}
+
+		return *this;
 	}
 }
 
@@ -211,10 +288,17 @@ namespace le7_main
 	{
 		le7_le7::Le7 le7 (_lesJoueurs, _nbJoueurs);
 		le7.Regle_1();
+
+		for (int ii = 0; ii < _nbJoueurs; ++ii)
+		{
+			std::cout << '.' << std::endl ; // ici ...
+		}
+		/*
 		std::cout << "Joueur 1, " << std::endl;
 		le7.Tirage();
 		std::cout << "Joueur 2, " << std::endl;
 		le7.Tirage();
+		*/
 	}
 }
 	
