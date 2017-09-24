@@ -15,7 +15,7 @@ namespace le7_le_de
 		LeDe(const LeDe& d) = default;
 		LeDe& operator = (const LeDe& d) = default;
 
-		int Lancer(void) { return random(); }
+		int Lancer(void);
 	private :
 	};
 
