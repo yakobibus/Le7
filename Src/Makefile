@@ -5,16 +5,7 @@
 CC = g++
 ARGS = -std=c++17
 
-# Conf_Portable
-# -------------
-# PRG_HOME = /cygdrive/c/Users/Public/Tools/Cygwin64/home/Jacques
-  PRG_HOME = /cygdrive/c/Users/Jacques/GitHubRepository/Le7
-
-# Conf_DeskTop
-# ------------
-# PRG_HOME = /cygdrive/c/Users/Jacques/GitHubRepository/Le7
-
-# -----------------------------------------------------------------------------
+PRG_HOME = /cygdrive/c/Users/Jacques/GitHubRepository/Le7
 
 EXE_DIR = .
 
