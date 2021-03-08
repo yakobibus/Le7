@@ -305,8 +305,10 @@ namespace le7_main
 
 int main(int argc, char** argv) {
 	le7_main::Main7 m7 (argc, argv);
+	/* 20170927 1131
 	m7.Le7();
 	m7.affiche();
+	*/
 
 	return 0;
 }
